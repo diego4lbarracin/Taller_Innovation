@@ -1,2 +1,2 @@
-# Taller_Seika
-Taller practico del semillero de investigación SEKIA.
+# Taller_Innovation
+Taller practico de la clase.
