@@ -1,3 +1,5 @@
+import argparse
+
 # Tasas de cambio almacenadas en el modelo (última información disponible)
 exchange_rates = {
     'USD': {
@@ -58,13 +60,15 @@ def convert_currency(amount, from_currency, to_currency):
     return amount * rate
 
 if __name__ == "__main__":
-    # Ejemplo de uso
-    from_currency = "USD"
-    to_currency = "EUR"
-    amount = 100
+    parser = argparse.ArgumentParser(description="Convertir divisas utilizando tasas de cambio almacenadas.")
+    parser.add_argument("amount", type=float, help="Cantidad de dinero a convertir")
+    parser.add_argument("from_currency", type=str, help="Código de la divisa de origen (por ejemplo, 'USD')")
+    parser.add_argument("to_currency", type=str, help="Código de la divisa de destino (por ejemplo, 'EUR')")
+
+    args = parser.parse_args()
 
     try:
-        converted_amount = convert_currency(amount, from_currency, to_currency)
-        print(f"{amount} {from_currency} son {converted_amount:.2f} {to_currency}")
+        converted_amount = convert_currency(args.amount, args.from_currency, args.to_currency)
+        print(f"{args.amount} {args.from_currency} son {converted_amount:.2f} {args.to_currency}")
     except ValueError as e:
         print(e)
